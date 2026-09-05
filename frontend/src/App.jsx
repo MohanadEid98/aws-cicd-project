@@ -9,7 +9,7 @@ function App() {
   // GET - Get all tasks
   // =========================
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/tasks")
+    fetch("http://3.89.136.95:5000/tasks")
       .then((response) => response.json())
       .then((data) => {
         setTasks(data);
@@ -27,7 +27,7 @@ function App() {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:5000/tasks",
+        "http://3.89.136.95:5000/tasks",
         {
           method: "POST",
           headers: {
@@ -58,7 +58,7 @@ async function toggleTask(id) {
 
     // Send the opposite completed value
     const response = await fetch(
-      `http://127.0.0.1:5000/tasks/${id}`,
+      `http://3.89.136.95:5000/tasks/${id}`,
       {
         method: "PUT",
         headers: {
@@ -90,7 +90,7 @@ async function toggleTask(id) {
  async function deleteTask(id) {
   try {
     const response = await fetch(
-      `http://127.0.0.1:5000/tasks/${id}`,
+      `http://3.89.136.95:5000/tasks/${id}`,
       {
         method: "DELETE",
       }
