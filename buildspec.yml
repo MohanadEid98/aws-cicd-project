@@ -3,7 +3,7 @@ version: 0.2
 env:
   variables:
     AWS_DEFAULT_REGION: us-east-1
-    AWS_ACCOUNT_ID: "753397111983"
+    AWS_ACCOUNT_ID: "75397111983"
     BACKEND_REPOSITORY: task-backend
     FRONTEND_REPOSITORY: task-frontend
     IMAGE_TAG: latest
@@ -31,3 +31,10 @@ phases:
 
       - echo Pushing Frontend image...
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$FRONTEND_REPOSITORY:$IMAGE_TAG
+
+      - echo Creating imagedefinitions.json...
+      - printf '[{"name":"task-frontend","imageUri":"%s"}]' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$FRONTEND_REPOSITORY:$IMAGE_TAG > imagedefinitions.json
+
+artifacts:
+  files:
+    - imagedefinitions.json
